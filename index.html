@@ -1824,7 +1824,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       <div class="whyus-card whyus-card-main">
         <div class="whyus-num">05</div>
         <h3>AI主権を、<br>組織の手に。</h3>
-        <p>世界では今、「<strong>AI主権（ソブリンAI）</strong>」という考え方が広がっています。他国のクラウドサービスや海外サーバーに依存せず、自国・自組織のデータとインフラで、AIを独立して運用する力。SecureMindは、組織が自らAIをコントロールできる未来を、技術的に支えます。</p>
+        <p>2026年6月、海外政府の輸出規制により、最先端AIモデルが日本を含む全世界で突然利用停止になる事態が実際に起きました。海外のクラウドAIは、<strong>他国の判断ひとつで、ある日使えなくなる</strong>——これはもう仮定の話ではありません。SecureMindのAIは組織の中で動くため、一度導入すれば外部の政治・規制に左右されず使い続けられます。「<strong>AI主権（ソブリンAI）</strong>」を、組織の手に。</p>
       </div>
     </div>
   </div>
@@ -1898,13 +1898,13 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       </div>
 
       <div class="target-card edu reveal" style="transition-delay:.2s">
-        <span class="t-tag">専門サービス業</span>
+        <span class="t-tag">専門サービス業・自治体</span>
         <div class="t-product-name">SecureMind for Professionals</div>
         <h3>守秘義務のある情報を、<br>安全に、賢く活かす。</h3>
-        <p>医療・法律・会計・金融など、顧客の機密情報を預かる組織へ。患者情報・契約書・財務データなどを、守秘義務を守りながらAIで効率的に活用。</p>
+        <p>医療・法律・会計・金融、そして自治体・議会など、機密情報を預かる組織へ。患者情報・契約書・議会の審議内容を、守秘義務を守りながらAIで効率的に活用。音声認識による議事録作成の自動化も、庁舎内で完結します。</p>
         <ul class="t-list">
-          <li><span class="t-check">✓</span>顧客情報の完全ローカル管理</li>
-          <li><span class="t-check">✓</span>文書作成・要約・分析の高速化</li>
+          <li><span class="t-check">✓</span>顧客情報・審議内容の完全ローカル管理</li>
+          <li><span class="t-check">✓</span>議事録作成・文書要約の大幅な負担軽減</li>
           <li><span class="t-check">✓</span>業法・ガイドラインに準拠した運用</li>
         </ul>
         <div class="t-emoji">⚖️</div>
@@ -2296,13 +2296,15 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     <div class="cta-card reveal" id="contact-form">
       <div class="cta-card-title">お問い合わせフォーム</div>
       <div class="cta-card-sub">通常2営業日以内にご返信いたします</div>
-      <div class="form-row">
-        <input class="form-input" type="text" placeholder="組織名・会社名">
-        <input class="form-input" type="text" placeholder="お名前">
-      </div>
-      <input class="form-input form-full" type="email" placeholder="メールアドレス">
-      <textarea class="form-textarea form-full" placeholder="お問い合わせ内容（例：鉄道会社ですが、整備部門でのAI活用について相談したい）"></textarea>
-      <button class="form-submit">送信する →</button>
+      <form action="https://formspree.io/f/mwvdazja" method="POST">
+        <div class="form-row">
+          <input class="form-input" type="text" name="組織名" placeholder="組織名・会社名" required>
+          <input class="form-input" type="text" name="お名前" placeholder="お名前" required>
+        </div>
+        <input class="form-input form-full" type="email" name="email" placeholder="メールアドレス" required>
+        <textarea class="form-textarea form-full" name="お問い合わせ内容" placeholder="お問い合わせ内容（例：鉄道会社ですが、整備部門でのAI活用について相談したい）" required></textarea>
+        <button class="form-submit" type="submit">送信する →</button>
+      </form>
     </div>
   </div>
 </section>
@@ -2319,7 +2321,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     </div>
     <div class="ft-logo-text">Secure<em>Mind</em> Technologies</div>
   </div>
-  <p>© 2025 Secure Mind Technologies. All rights reserved.</p>
+  <p>© 2026 Secure Mind Technologies. All rights reserved.</p>
 </footer>
 
 <script>
