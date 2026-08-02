@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureMind for Government | 議会・自治体向けローカルAIサービス</title>
+<meta name="description" content="議会議事録のAI自動作成・ライブ文字起こし・議事録検索「みんなの議事録」・広報動画制作。住民情報も審議内容も庁舎の外に出さない、自治体専用のローカルAIサービスです。">
+<meta name="keywords" content="議事録AI,議会議事録,自動文字起こし,自治体AI,ローカルAI,議会DX,みんなの議事録">
+<meta property="og:title" content="SecureMind for Government | 議会・自治体向けローカルAI">
+<meta property="og:description" content="議事録作成の残業を、庁舎の中のAIがなくす。住民情報も審議内容も外に出さない、自治体専用ローカルAIサービス。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2A4A; --navy-mid:#2A3E63;
+  --pink:#FF6B9D;
+  --green:#2A9D6E; --green-deep:#1F7A55; --green-soft:#E8F6EF;
+  --cream:#FDFCFA; --slate:#5A6B8C;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--navy);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;}
+a{color:inherit;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(253,252,250,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,42,74,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--pink),#C45090);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.nav-name{font-size:16px;font-weight:800;color:var(--navy);}
+.nav-name em{color:var(--pink);font-style:normal;}
+.nav-sub{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--green-deep);background:var(--green-soft);padding:3px 10px;border-radius:100px;font-weight:700;}
+.nav-back{font-size:12px;font-weight:700;color:var(--slate);text-decoration:none;white-space:nowrap;}
+.nav-back:hover{color:var(--pink);}
+
+/* HERO */
+.hero{padding:72px 24px 88px;background:linear-gradient(160deg,#FFFFFF 0%,var(--green-soft) 100%);}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+.hero-eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--green-deep);background:#fff;border:1.5px solid rgba(42,157,110,.3);padding:6px 16px;border-radius:100px;margin-bottom:22px;}
+.hero-h1{font-size:clamp(28px,4.4vw,46px);font-weight:900;line-height:1.42;margin-bottom:18px;}
+.hero-h1 em{font-style:normal;color:var(--green-deep);}
+.hero-lead{font-size:15px;color:var(--slate);line-height:2;margin-bottom:30px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-main{display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff;font-size:15px;font-weight:800;padding:15px 30px;border-radius:100px;text-decoration:none;box-shadow:0 8px 24px rgba(42,157,110,.35);transition:transform .25s,box-shadow .25s;}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(42,157,110,.45);}
+.btn-ghost{display:inline-block;background:#fff;color:var(--navy);font-size:15px;font-weight:700;padding:15px 30px;border-radius:100px;text-decoration:none;border:1.5px solid rgba(27,42,74,.15);transition:border-color .25s;}
+.btn-ghost:hover{border-color:var(--green);}
+
+/* 議事録モックアップ */
+.minutes-card{background:#fff;border-radius:18px;box-shadow:0 24px 60px rgba(27,42,74,.14);overflow:hidden;border:1px solid rgba(27,42,74,.07);}
+.minutes-head{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.minutes-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.04em;}
+.minutes-live{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#7FE5B0;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#2ECC71;animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.minutes-body{padding:22px 22px 16px;display:flex;flex-direction:column;gap:14px;}
+.m-line{display:flex;gap:12px;align-items:flex-start;}
+.m-speaker{flex-shrink:0;font-size:10px;font-weight:800;letter-spacing:.05em;padding:4px 10px;border-radius:6px;margin-top:2px;}
+.sp-chair{background:rgba(27,42,74,.08);color:var(--navy);}
+.sp-member{background:var(--green-soft);color:var(--green-deep);}
+.sp-staff{background:rgba(255,107,157,.1);color:#C45090;}
+.m-text{font-size:12.5px;color:var(--navy);line-height:1.8;}
+.m-text.typing::after{content:'▍';color:var(--green);animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.minutes-foot{border-top:1px solid rgba(27,42,74,.07);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;background:#FAFBF9;}
+.mf-brand{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--slate);}
+.mf-local{font-size:10px;font-weight:800;color:var(--green-deep);}
+@media(prefers-reduced-motion:reduce){.live-dot,.m-text.typing::after{animation:none;}}
+
+/* PAIN */
+.pain{padding:88px 24px;background:#fff;}
+.pain-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.section-label{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green-deep);text-transform:uppercase;margin-bottom:14px;}
+.section-title{font-size:clamp(24px,3.4vw,34px);font-weight:900;line-height:1.5;margin-bottom:16px;}
+.section-title em{font-style:normal;color:var(--green-deep);}
+.pain-lead{font-size:15px;color:var(--slate);line-height:2;max-width:640px;margin:0 auto 48px;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;}
+.pain-card{background:var(--cream);border:1.5px solid rgba(27,42,74,.07);border-radius:16px;padding:26px 24px;}
+.pain-num{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:var(--pink);margin-bottom:10px;}
+.pain-card h3{font-size:16px;font-weight:800;line-height:1.6;margin-bottom:10px;}
+.pain-card p{font-size:13px;color:var(--slate);line-height:1.9;}
+
+/* SERVICES */
+.services{padding:88px 24px;background:linear-gradient(180deg,var(--cream) 0%,#F4F6F2 100%);}
+.services-inner{max-width:1100px;margin:0 auto;}
+.services-header{text-align:center;margin-bottom:52px;}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.svc-card{background:#fff;border-radius:20px;padding:34px 30px;border:1.5px solid rgba(27,42,74,.07);position:relative;transition:transform .3s,box-shadow .3s;}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(27,42,74,.09);}
+.svc-flag{position:absolute;top:-12px;left:28px;background:var(--green);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 14px;border-radius:100px;box-shadow:0 4px 12px rgba(42,157,110,.35);}
+.svc-icon{font-size:34px;margin-bottom:14px;}
+.svc-name{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:6px;}
+.svc-name small{display:block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--slate);margin-top:6px;}
+.svc-desc{font-size:13.5px;color:var(--slate);line-height:1.95;margin:14px 0 18px;}
+.svc-points{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.svc-points li{display:flex;gap:9px;align-items:flex-start;font-size:13px;font-weight:600;line-height:1.6;}
+.svc-check{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:3px;}
+
+/* WHY LOCAL */
+.whylocal{padding:88px 24px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);color:#fff;}
+.whylocal-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.whylocal .section-label{color:#7FE5B0;}
+.whylocal .section-title{color:#fff;}
+.whylocal .section-title em{color:#7FE5B0;}
+.wl-lead{font-size:15px;color:rgba(255,255,255,.75);line-height:2;max-width:660px;margin:0 auto 44px;}
+.wl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;}
+.wl-card{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:16px;padding:26px 24px;}
+.wl-icon{font-size:28px;margin-bottom:12px;}
+.wl-card h3{font-size:16px;font-weight:800;color:#fff;line-height:1.6;margin-bottom:10px;}
+.wl-card p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.9;}
+
+/* FLOW */
+.flow{padding:88px 24px;background:#fff;}
+.flow-inner{max-width:900px;margin:0 auto;}
+.flow-header{text-align:center;margin-bottom:48px;}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.flow-step{background:var(--cream);border:1.5px solid rgba(27,42,74,.07);border-radius:16px;padding:24px 18px;text-align:center;}
+.fs-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--green);margin-bottom:8px;}
+.flow-step h3{font-size:14px;font-weight:800;margin-bottom:8px;}
+.flow-step p{font-size:11.5px;color:var(--slate);line-height:1.8;}
+
+/* CTA */
+.cta{padding:96px 24px;background:linear-gradient(160deg,var(--green-soft) 0%,#fff 100%);text-align:center;}
+.cta-inner{max-width:720px;margin:0 auto;}
+.cta h2{font-size:clamp(24px,3.4vw,34px);font-weight:900;line-height:1.5;margin-bottom:14px;}
+.cta h2 em{font-style:normal;color:var(--green-deep);}
+.cta p{font-size:15px;color:var(--slate);line-height:2;margin-bottom:34px;}
+.cta-note{margin-top:22px;font-size:12px;color:var(--slate);}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.6);padding:36px 24px;text-align:center;font-size:12px;}
+footer a{color:rgba(255,255,255,.8);text-decoration:none;font-weight:700;}
+footer a:hover{color:var(--pink);}
+.ft-line{margin-bottom:8px;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.on{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .pain-grid,.wl-grid{grid-template-columns:1fr;}
+  .svc-grid{grid-template-columns:1fr;}
+  .flow-steps{grid-template-columns:1fr 1fr;}
+  .hero{padding:48px 20px 64px;}
+  .pain,.services,.whylocal,.flow{padding:64px 20px;}
+  .cta{padding:72px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <div class="nav-mark">🔒</div>
+      <div class="nav-name">Secure<em>Mind</em></div>
+      <div class="nav-sub">for Government</div>
+    </a>
+    <a class="nav-back" href="/">← SecureMind トップへ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🏛️ 議会・自治体向けローカルAIサービス</div>
+      <h1 class="hero-h1">議事録作成の残業を、<br><em>庁舎の中のAI</em>がなくす。</h1>
+      <p class="hero-lead">
+        録音を聞き直しては、書き起こす。何十時間もかかる議事録作成を、音声認識×ローカルAIで自動化。住民情報も審議内容も、一切外部に送りません。文字起こしから要約・整形まで、すべて庁舎内で完結します。
+      </p>
+      <div class="hero-btns">
+        <a class="btn-main" href="/#contact">導入の相談をする →</a>
+        <a class="btn-ghost" href="#services">サービスを見る</a>
+      </div>
+    </div>
+    <div class="minutes-card">
+      <div class="minutes-head">
+        <div class="minutes-title">令和8年 第3回定例会 会議録</div>
+        <div class="minutes-live"><span class="live-dot"></span>文字起こし中</div>
+      </div>
+      <div class="minutes-body">
+        <div class="m-line">
+          <span class="m-speaker sp-chair">議長</span>
+          <span class="m-text">これより本日の会議を開きます。日程第1、一般質問を行います。</span>
+        </div>
+        <div class="m-line">
+          <span class="m-speaker sp-member">議員</span>
+          <span class="m-text">通告に従いまして、防災行政について質問いたします。まず、避難所の開設体制について——</span>
+        </div>
+        <div class="m-line">
+          <span class="m-speaker sp-staff">総務課長</span>
+          <span class="m-text typing">ただいまのご質問にお答えいたします。現在、町内の指定避難所は</span>
+        </div>
+      </div>
+      <div class="minutes-foot">
+        <span class="mf-brand">SECUREMIND FOR GOVERNMENT</span>
+        <span class="mf-local">🔒 庁舎内処理・外部送信ゼロ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="section-title reveal">議事録作成は、<em>いちばん重い定例業務</em>です。</h2>
+    <p class="pain-lead reveal">議会のたびに繰り返される、録音の聞き直しと清書。事務局の残業時間も、外部委託の費用も、静かに積み上がっています。</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 01</div>
+        <h3>1回の議会で、数十時間</h3>
+        <p>録音時間の3〜5倍かかると言われる書き起こし作業。定例会・委員会が重なる時期は、事務局の残業が常態化します。</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 02</div>
+        <h3>外部委託は高く、遅い</h3>
+        <p>反訳業者への委託は1時間あたり数万円。納品まで数週間かかり、公開の遅れが住民への説明責任にも影響します。</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 03</div>
+        <h3>クラウド文字起こしは使えない</h3>
+        <p>便利なAI文字起こしサービスは、音声を外部サーバーに送信します。非公開の委員会・協議会では、そもそも選択肢になりません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="section-label reveal">Services</div>
+      <h2 class="section-title reveal">議会のことばを、<em>まちの財産</em>に。</h2>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-flag">主力サービス</div>
+        <div class="svc-icon">📝</div>
+        <h3 class="svc-name">AI議事録サービス<small>AI MINUTES</small></h3>
+        <p class="svc-desc">本会議・委員会の録音データから、文字起こし・話者整理・要約・整形まで自動化。完成した議事録案を職員が確認・修正するだけの運用に変わります。すべての処理は庁舎内の専用機で行い、音声・テキストは一切外部に出ません。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>書き起こし作業時間を大幅に削減</li>
+          <li><span class="svc-check">✓</span>方言・専門用語に対応する音声認識</li>
+          <li><span class="svc-check">✓</span>非公開会議にも安心して使える完全ローカル処理</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🎤</div>
+        <h3 class="svc-name">議会ライブ文字起こし<small>LIVE TRANSCRIPTION</small></h3>
+        <p class="svc-desc">開会中の議会を、リアルタイムで文字化。議場のモニターや中継画面に字幕として表示でき、聴覚に障害のある方や高齢の傍聴者への情報保障にもつながります。開かれた議会づくりの、新しい標準に。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>議場・中継への字幕表示に対応</li>
+          <li><span class="svc-check">✓</span>聞こえに不安のある住民への情報保障</li>
+          <li><span class="svc-check">✓</span>録音データはそのまま議事録作成へ連携</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🔍</div>
+        <h3 class="svc-name">議事録検索「みんなの議事録」<small>MINNA NO GIJIROKU</small></h3>
+        <p class="svc-desc">公開済みの議事録を、住民が誰でも検索できるポータルに。「学校統合はいつ議論された?」「防災の質問をした議員は?」——知りたいことに、キーワードひとつでたどり着けます。議会の見える化を、検索から。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>キーワード・議員名・会議別に横断検索</li>
+          <li><span class="svc-check">✓</span>オープンデータとしての活用にも対応</li>
+          <li><span class="svc-check">✓</span>住民への説明責任と議会広報を強化</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">🎬</div>
+        <h3 class="svc-name">広報動画サービス<small>PR VIDEO</small></h3>
+        <p class="svc-desc">議会だより・市政広報の内容を、AIを活用した動画に。ナレーション・字幕・構成をAIが支援することで、広報担当者が少ない自治体でも、低コストで継続的な動画発信ができます。若い世代に届く広報へ。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>議会・市政の内容をわかりやすく動画化</li>
+          <li><span class="svc-check">✓</span>制作をAI支援し、低コストで継続可能に</li>
+          <li><span class="svc-check">✓</span>SNS・YouTube等での住民向け発信に対応</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY LOCAL -->
+<section class="whylocal">
+  <div class="whylocal-inner">
+    <div class="section-label reveal">Why Local AI</div>
+    <h2 class="section-title reveal">なぜ、<em>庁舎の中</em>で動くAIなのか。</h2>
+    <p class="wl-lead reveal">自治体が扱うのは、住民の人生に関わる情報です。便利さのために、それを外部サーバーに送ることはできません。SecureMindのAIは、庁舎に設置した専用機の中だけで動きます。</p>
+    <div class="wl-grid">
+      <div class="wl-card reveal">
+        <div class="wl-icon">🔒</div>
+        <h3>外部送信ゼロ</h3>
+        <p>音声もテキストも、インターネットに一切出ません。非公開の委員会・協議会・懲罰動議など、繊細な審議にも安心して使えます。</p>
+      </div>
+      <div class="wl-card reveal">
+        <div class="wl-icon">🗣️</div>
+        <h3>地域のことばに強い</h3>
+        <p>方言・地名・議会用語に合わせて音声認識を調整。全国一律のクラウドサービスでは拾えない「その土地のことば」を認識します。</p>
+      </div>
+      <div class="wl-card reveal">
+        <div class="wl-icon">🤝</div>
+        <h3>同じ地域から、伴走する</h3>
+        <p>山口県周防大島町を拠点に、導入から運用まで直接伺います。都市部のベンダーとは違う距離感で、長くお付き合いします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow">
+  <div class="flow-inner">
+    <div class="flow-header">
+      <div class="section-label reveal">Flow</div>
+      <h2 class="section-title reveal">導入の<em>流れ</em></h2>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="fs-num">1</div>
+        <h3>ご相談</h3>
+        <p>議会の運営体制・議事録作成の現状をヒアリング(オンライン可)</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">2</div>
+        <h3>実データで検証</h3>
+        <p>実際の議会音声で認識精度をデモ。効果を確認してから判断できます</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">3</div>
+        <h3>庁舎内に構築</h3>
+        <p>専用機の設置・音声認識の調整・職員向けの操作研修まで一括対応</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">4</div>
+        <h3>運用・改善</h3>
+        <p>月次で認識精度を改善。議会のたびに、AIが賢くなります</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="reveal">まずは、<em>実際の議会音声</em>でお試しください。</h2>
+    <p class="reveal">「うちの議会の音声で、どこまで認識できるのか」——それを確かめてからで大丈夫です。デモ・お見積もりは無料。議会事務局・総務課のご担当者様からのご相談をお待ちしています。</p>
+    <a class="btn-main reveal" href="/#contact">お問い合わせ・デモを申し込む →</a>
+    <div class="cta-note reveal">導入費用は議会規模・ご要望に応じて個別にお見積もりいたします。</div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-line"><a href="/">SecureMind Technologies</a> — 口が固くて、仕事が早い。</div>
+  <div>© 2026 Secure Mind Technologies. All rights reserved.</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
