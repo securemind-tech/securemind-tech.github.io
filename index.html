@@ -6,8 +6,8 @@
 <title>AI社員第1号を採用する | Secure Mind Technologies</title>
 
 <!-- SEO -->
-<meta name="description" content="口が固くて、頭がいい。機密情報を扱う組織のためのローカルAI導入支援「Secure Mind」。情報漏洩ゼロ・24時間365日稼働のAI社員を、インフラ企業・製造業・専門サービス業に。">
-<meta name="keywords" content="ローカルAI,AI導入,DXコンサル,情報漏洩防止,機密情報,インフラAI,製造業AI,医療AI,法律AI,セキュアAI,オンプレミスAI">
+<meta name="description" content="口が固くて、頭がいい。機密情報を扱う組織のためのローカルAI導入支援「Secure Mind」。情報漏洩ゼロ・24時間365日稼働のAI社員を、インフラ企業・自治体に。">
+<meta name="keywords" content="ローカルAI,AI導入,DXコンサル,情報漏洩防止,機密情報,インフラAI,医療AI,法律AI,セキュアAI,オンプレミスAI">
 <meta name="author" content="Secure Mind Technologies">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://securemind.co.jp/">
@@ -32,7 +32,7 @@
   "@type": "Organization",
   "name": "Secure Mind Technologies",
   "url": "https://securemind.co.jp",
-  "description": "機密情報を扱う組織のためのローカルAI導入支援会社。情報漏洩ゼロのAI社員第1号を、インフラ企業・製造業・専門サービス業に提供。",
+  "description": "機密情報を扱う組織のためのローカルAI導入支援会社。情報漏洩ゼロのAI社員第1号を、インフラ企業・自治体に提供。",
   "serviceType": ["DXコンサルティング", "ローカルAI導入", "AI人材育成"],
   "areaServed": "JP"
 }
@@ -616,6 +616,14 @@ nav {
 .t-check { width:20px;height:20px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:white;margin-top:2px; }
 .target-card.edu { background:linear-gradient(150deg,#F0FFF8 0%,#E8FFF4 100%); border:1.5px solid rgba(50,180,120,.2); }
 .edu .t-tag { background:rgba(50,180,120,.12); color:#2A9D6E; }
+.t-detail-link {
+  display:inline-block; margin-top:18px;
+  font-size:13px; font-weight:800; color:#2A9D6E;
+  text-decoration:none; border-bottom:2px solid rgba(42,157,110,.35);
+  padding-bottom:2px; transition:border-color .25s, color .25s;
+  position:relative; z-index:2;
+}
+.t-detail-link:hover { color:#1F7A55; border-color:#1F7A55; }
 .edu .t-check { background:#2A9D6E; }
 .govt .t-check { background:var(--lavender); }
 .mfg .t-check { background:var(--pink); }
@@ -1870,7 +1878,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       <div class="section-label">Who We Serve</div>
       <h2 class="section-title">機密情報を扱う、<em>あらゆる組織</em>へ。</h2>
     </div>
-    <div class="targets-grid" style="grid-template-columns:repeat(3,1fr);">
+    <div class="targets-grid" style="grid-template-columns:repeat(2,1fr);max-width:900px;margin:0 auto;">
       <div class="target-card govt reveal">
         <span class="t-tag">インフラ企業</span>
         <div class="t-product-name">SecureMind for Infrastructure</div>
@@ -1884,30 +1892,18 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
         <div class="t-emoji">✈️</div>
       </div>
 
-      <div class="target-card mfg reveal" style="transition-delay:.1s">
-        <span class="t-tag">製造業・メーカー</span>
-        <div class="t-product-name">SecureMind for Manufacturing</div>
-        <h3>現場の技術情報は、<br>競争力そのもの。<br>守り抜く。</h3>
-        <p>自動車部品・電子機器・重工業など、独自技術を持つメーカーへ。設計データ・品質管理・熟練工のノウハウをAIで安全に活用。工場の中だけで完結するAI環境を構築。</p>
+      <div class="target-card edu reveal" style="transition-delay:.1s">
+        <span class="t-tag">自治体・議会</span>
+        <div class="t-product-name">SecureMind for Government</div>
+        <h3>住民情報も、審議内容も、<br>庁舎の外に出さない。</h3>
+        <p>市町村・議会事務局へ。議会議事録の作成を、音声認識×ローカルAIで自動化。文字起こしから要約・整形まで、住民情報や審議内容を一切外部に送らず、庁舎内で完結します。非公開の委員会・協議会にも対応。</p>
         <ul class="t-list">
-          <li><span class="t-check">✓</span>技術情報・設計データの社外流出ゼロ</li>
-          <li><span class="t-check">✓</span>品質管理・検査業務の効率化</li>
-          <li><span class="t-check">✓</span>熟練工のノウハウをAIに蓄積</li>
+          <li><span class="t-check">✓</span>議事録作成の作業時間を大幅に削減</li>
+          <li><span class="t-check">✓</span>住民情報・審議内容の完全ローカル管理</li>
+          <li><span class="t-check">✓</span>方言・専門用語に対応する音声認識</li>
         </ul>
-        <div class="t-emoji">🏭</div>
-      </div>
-
-      <div class="target-card edu reveal" style="transition-delay:.2s">
-        <span class="t-tag">専門サービス業・自治体</span>
-        <div class="t-product-name">SecureMind for Professionals</div>
-        <h3>守秘義務のある情報を、<br>安全に、賢く活かす。</h3>
-        <p>医療・法律・会計・金融、そして自治体・議会など、機密情報を預かる組織へ。患者情報・契約書・議会の審議内容を、守秘義務を守りながらAIで効率的に活用。音声認識による議事録作成の自動化も、庁舎内で完結します。</p>
-        <ul class="t-list">
-          <li><span class="t-check">✓</span>顧客情報・審議内容の完全ローカル管理</li>
-          <li><span class="t-check">✓</span>議事録作成・文書要約の大幅な負担軽減</li>
-          <li><span class="t-check">✓</span>業法・ガイドラインに準拠した運用</li>
-        </ul>
-        <div class="t-emoji">⚖️</div>
+        <a href="/government/" class="t-detail-link">サービス詳細を見る →</a>
+        <div class="t-emoji">🏛️</div>
       </div>
     </div>
   </div>
@@ -1926,7 +1922,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
         <div>
           <div class="founder-name-ja">山田 慧史</div>
           <div class="founder-name-en">Keiji Yamada</div>
-          <div class="founder-role">代表取締役（予定）</div>
+          <div class="founder-role">代表</div>
         </div>
       </div>
       <div class="founder-body">
@@ -1976,7 +1972,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
           </a>
         </div>
         <div class="founder-launch">
-          🚀 <em>2026年8月、株式会社Secure Mind Technologies 設立予定。</em><br>
+          🚀 <em>2026年8月、SecureMind Technologies 開業。</em><br>
           <span style="font-size:12px;color:var(--slate);font-weight:400">現在、創業準備中です。お問い合わせはお気軽にどうぞ。</span>
         </div>
       </div>
@@ -1993,20 +1989,16 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     </div>
     <div class="company-table reveal">
       <div class="company-row">
-        <div class="company-th">会社名</div>
-        <div class="company-td">株式会社 Secure Mind Technologies</div>
+        <div class="company-th">名称</div>
+        <div class="company-td">SecureMind Technologies（セキュアマインド・テクノロジーズ）</div>
       </div>
       <div class="company-row">
-        <div class="company-th">代表取締役</div>
+        <div class="company-th">代表</div>
         <div class="company-td">山田 慧史（やまだ けいじ）</div>
       </div>
       <div class="company-row">
-        <div class="company-th">設立</div>
-        <div class="company-td">2026年8月（予定）</div>
-      </div>
-      <div class="company-row">
-        <div class="company-th">資本金</div>
-        <div class="company-td">300万円（予定）</div>
+        <div class="company-th">開業</div>
+        <div class="company-td">2026年8月</div>
       </div>
       <div class="company-row">
         <div class="company-th">事業内容</div>
