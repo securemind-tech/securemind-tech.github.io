@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SecureMind for Infrastructure | 整備・保全現場のためのローカルAI</title>
+<meta name="description" content="不具合記録のナレッジ検索、英語整備マニュアルの横断Q&A、引き継ぎ書の下書き、再発防止の傾向分析。機密の技術情報を外に出さず、整備・保全の現場で動くローカルAIです。">
+<meta name="keywords" content="整備AI,保全AI,ローカルAI,不具合記録検索,整備マニュアル,技術伝承,再発防止,シミュレーター整備">
+<meta property="og:title" content="SecureMind for Infrastructure | 整備・保全現場のためのローカルAI">
+<meta property="og:description" content="「前にも、同じ不具合がなかったっけ？」その答えを数秒で。機密の技術情報を外に出さない、整備現場のためのローカルAI。">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1B2A4A; --navy-mid:#2A3E63;
+  --pink:#FF6B9D;
+  --green:#3B5FBF; --green-deep:#2A4596; --green-soft:#EEF4FF;
+  --cream:#FDFCFA; --slate:#5A6B8C;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;color:var(--navy);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;}
+a{color:inherit;}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(253,252,250,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,42,74,.06);}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-mark{width:34px;height:34px;background:linear-gradient(135deg,var(--pink),#C45090);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;}
+.nav-name{font-size:16px;font-weight:800;color:var(--navy);}
+.nav-name em{color:var(--pink);font-style:normal;}
+.nav-sub{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--green-deep);background:var(--green-soft);padding:3px 10px;border-radius:100px;font-weight:700;}
+.nav-back{font-size:12px;font-weight:700;color:var(--slate);text-decoration:none;white-space:nowrap;}
+.nav-back:hover{color:var(--pink);}
+
+/* HERO */
+.hero{padding:72px 24px 88px;background:linear-gradient(160deg,#FFFFFF 0%,var(--green-soft) 100%);}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;}
+.hero-eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--green-deep);background:#fff;border:1.5px solid rgba(59,95,191,.3);padding:6px 16px;border-radius:100px;margin-bottom:22px;}
+.hero-h1{font-size:clamp(28px,4.4vw,46px);font-weight:900;line-height:1.42;margin-bottom:18px;}
+.hero-h1 em{font-style:normal;color:var(--green-deep);}
+.hero-lead{font-size:15px;color:var(--slate);line-height:2;margin-bottom:30px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-main{display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff;font-size:15px;font-weight:800;padding:15px 30px;border-radius:100px;text-decoration:none;box-shadow:0 8px 24px rgba(59,95,191,.35);transition:transform .25s,box-shadow .25s;}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(59,95,191,.45);}
+.btn-ghost{display:inline-block;background:#fff;color:var(--navy);font-size:15px;font-weight:700;padding:15px 30px;border-radius:100px;text-decoration:none;border:1.5px solid rgba(27,42,74,.15);transition:border-color .25s;}
+.btn-ghost:hover{border-color:var(--green);}
+
+/* 議事録モックアップ */
+.minutes-card{background:#fff;border-radius:18px;box-shadow:0 24px 60px rgba(27,42,74,.14);overflow:hidden;border:1px solid rgba(27,42,74,.07);}
+.minutes-head{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+.minutes-title{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);letter-spacing:.04em;}
+.minutes-live{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#A9C1FF;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#2ECC71;animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.minutes-body{padding:22px 22px 16px;display:flex;flex-direction:column;gap:14px;}
+.m-line{display:flex;gap:12px;align-items:flex-start;}
+.m-speaker{flex-shrink:0;font-size:10px;font-weight:800;letter-spacing:.05em;padding:4px 10px;border-radius:6px;margin-top:2px;}
+.sp-chair{background:rgba(27,42,74,.08);color:var(--navy);}
+.sp-member{background:var(--green-soft);color:var(--green-deep);}
+.sp-staff{background:rgba(255,107,157,.1);color:#C45090;}
+.m-text{font-size:12.5px;color:var(--navy);line-height:1.8;}
+.m-text.typing::after{content:'▍';color:var(--green);animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0}}
+.minutes-foot{border-top:1px solid rgba(27,42,74,.07);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;background:#FAFBF9;}
+.mf-brand{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--slate);}
+.mf-local{font-size:10px;font-weight:800;color:var(--green-deep);}
+@media(prefers-reduced-motion:reduce){.live-dot,.m-text.typing::after{animation:none;}}
+
+/* PAIN */
+.pain{padding:88px 24px;background:#fff;}
+.pain-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.section-label{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--green-deep);text-transform:uppercase;margin-bottom:14px;}
+.section-title{font-size:clamp(24px,3.4vw,34px);font-weight:900;line-height:1.5;margin-bottom:16px;}
+.section-title em{font-style:normal;color:var(--green-deep);}
+.pain-lead{font-size:15px;color:var(--slate);line-height:2;max-width:640px;margin:0 auto 48px;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;}
+.pain-card{background:var(--cream);border:1.5px solid rgba(27,42,74,.07);border-radius:16px;padding:26px 24px;}
+.pain-num{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:var(--pink);margin-bottom:10px;}
+.pain-card h3{font-size:16px;font-weight:800;line-height:1.6;margin-bottom:10px;}
+.pain-card p{font-size:13px;color:var(--slate);line-height:1.9;}
+
+/* SERVICES */
+.services{padding:88px 24px;background:linear-gradient(180deg,var(--cream) 0%,#F4F6F2 100%);}
+.services-inner{max-width:1100px;margin:0 auto;}
+.services-header{text-align:center;margin-bottom:52px;}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.svc-card{background:#fff;border-radius:20px;padding:34px 30px;border:1.5px solid rgba(27,42,74,.07);position:relative;transition:transform .3s,box-shadow .3s;}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(27,42,74,.09);}
+.svc-flag{position:absolute;top:-12px;left:28px;background:var(--green);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;padding:4px 14px;border-radius:100px;box-shadow:0 4px 12px rgba(59,95,191,.35);}
+.svc-icon{font-size:34px;margin-bottom:14px;}
+.svc-name{font-size:20px;font-weight:900;line-height:1.4;margin-bottom:6px;}
+.svc-name small{display:block;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--slate);margin-top:6px;}
+.svc-desc{font-size:13.5px;color:var(--slate);line-height:1.95;margin:14px 0 18px;}
+.svc-points{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.svc-points li{display:flex;gap:9px;align-items:flex-start;font-size:13px;font-weight:600;line-height:1.6;}
+.svc-check{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:3px;}
+
+/* WHY LOCAL */
+.whylocal{padding:88px 24px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);color:#fff;}
+.whylocal-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.whylocal .section-label{color:#A9C1FF;}
+.whylocal .section-title{color:#fff;}
+.whylocal .section-title em{color:#A9C1FF;}
+.wl-lead{font-size:15px;color:rgba(255,255,255,.75);line-height:2;max-width:660px;margin:0 auto 44px;}
+.wl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left;}
+.wl-card{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:16px;padding:26px 24px;}
+.wl-icon{font-size:28px;margin-bottom:12px;}
+.wl-card h3{font-size:16px;font-weight:800;color:#fff;line-height:1.6;margin-bottom:10px;}
+.wl-card p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.9;}
+
+/* FLOW */
+.flow{padding:88px 24px;background:#fff;}
+.flow-inner{max-width:900px;margin:0 auto;}
+.flow-header{text-align:center;margin-bottom:48px;}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.flow-step{background:var(--cream);border:1.5px solid rgba(27,42,74,.07);border-radius:16px;padding:24px 18px;text-align:center;}
+.fs-num{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--green);margin-bottom:8px;}
+.flow-step h3{font-size:14px;font-weight:800;margin-bottom:8px;}
+.flow-step p{font-size:11.5px;color:var(--slate);line-height:1.8;}
+
+/* CTA */
+.cta{padding:96px 24px;background:linear-gradient(160deg,var(--green-soft) 0%,#fff 100%);text-align:center;}
+.cta-inner{max-width:720px;margin:0 auto;}
+.cta h2{font-size:clamp(24px,3.4vw,34px);font-weight:900;line-height:1.5;margin-bottom:14px;}
+.cta h2 em{font-style:normal;color:var(--green-deep);}
+.cta p{font-size:15px;color:var(--slate);line-height:2;margin-bottom:34px;}
+.cta-note{margin-top:22px;font-size:12px;color:var(--slate);}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.6);padding:36px 24px;text-align:center;font-size:12px;}
+footer a{color:rgba(255,255,255,.8);text-decoration:none;font-weight:700;}
+footer a:hover{color:var(--pink);}
+.ft-line{margin-bottom:8px;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.on{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr;gap:36px;}
+  .pain-grid,.wl-grid{grid-template-columns:1fr;}
+  .svc-grid{grid-template-columns:1fr;}
+  .flow-steps{grid-template-columns:1fr 1fr;}
+  .hero{padding:48px 20px 64px;}
+  .pain,.services,.whylocal,.flow{padding:64px 20px;}
+  .cta{padding:72px 20px;}
+}
+
+.log-q{background:var(--green-soft);border-radius:10px;padding:10px 14px;font-size:12.5px;font-weight:700;color:var(--navy);}
+.log-hit{border:1.5px solid rgba(27,42,74,.08);border-radius:10px;padding:10px 14px;}
+.log-hit-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.log-id{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:var(--green-deep);}
+.log-date{font-family:'Space Mono',monospace;font-size:10px;color:var(--slate);}
+.log-text{font-size:12px;line-height:1.7;color:var(--navy);}
+.log-src{font-size:10px;color:var(--slate);margin-top:4px;}
+.founder-note{max-width:760px;margin:0 auto;background:#fff;border:1.5px solid rgba(27,42,74,.08);border-left:4px solid var(--pink);border-radius:14px;padding:26px 28px;text-align:left;}
+.founder-note p{font-size:14px;line-height:2;color:var(--navy);}
+.founder-note .fn-sign{margin-top:12px;font-size:12px;color:var(--slate);font-weight:700;}
+.next-fields{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px;}
+.nf-chip{background:#fff;border:1.5px solid rgba(27,42,74,.1);border-radius:100px;padding:8px 18px;font-size:13px;font-weight:700;color:var(--navy);}
+.nf-chip.now{background:var(--green);color:#fff;border-color:transparent;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/">
+      <div class="nav-mark">🔒</div>
+      <div class="nav-name">Secure<em>Mind</em></div>
+      <div class="nav-sub">for Infrastructure</div>
+    </a>
+    <a class="nav-back" href="/">← SecureMind トップへ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">✈️ 整備・保全の現場のためのローカルAI</div>
+      <h1 class="hero-h1">「前にも、同じ不具合が<br>なかったっけ？」<br>その答えを、<em>数秒で。</em></h1>
+      <p class="hero-lead">
+        過去の不具合記録、英語の整備マニュアル、ベテランの経験。整備現場の知識は、紙とファイルサーバーと人の頭の中に散らばっています。SecureMind for Infrastructure は、それらを現場の中だけで動くAIに集約。機密の技術情報を一切外に出さず、必要な答えにすぐたどり着ける環境をつくります。
+      </p>
+      <div class="hero-btns">
+        <a class="btn-main" href="/#contact">導入の相談をする →</a>
+        <a class="btn-ghost" href="#services">できることを見る</a>
+      </div>
+    </div>
+    <div class="minutes-card">
+      <div class="minutes-head">
+        <div class="minutes-title">整備ナレッジ検索 — 不具合記録</div>
+        <div class="minutes-live"><span class="live-dot"></span>ローカル稼働中</div>
+      </div>
+      <div class="minutes-body">
+        <div class="log-q">🔍 モーション系、起動時にエラーで停止。過去の類似事例は？</div>
+        <div class="log-hit">
+          <div class="log-hit-head"><span class="log-id">記録 #2023-0418</span><span class="log-date">類似度 高</span></div>
+          <div class="log-text">起動シーケンス中に同様の停止。センサー系の接触不良が原因。コネクタ清掃・再接続で復旧。</div>
+          <div class="log-src">出典：不具合記録／対処：夜勤班</div>
+        </div>
+        <div class="log-hit">
+          <div class="log-hit-head"><span class="log-id">マニュアル 該当箇所</span><span class="log-date">英→日 要約</span></div>
+          <div class="log-text m-text typing">起動前点検手順では、まず関連する安全インターロックの状態を確認すること</div>
+        </div>
+      </div>
+      <div class="minutes-foot">
+        <span class="mf-brand">SECUREMIND FOR INFRASTRUCTURE</span>
+        <span class="mf-local">🔒 現場内処理・外部送信ゼロ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="section-label reveal">The Problem</div>
+    <h2 class="section-title reveal">止められない設備ほど、<em>知識が属人化</em>している。</h2>
+    <p class="pain-lead reveal">訓練スケジュールに穴を開けられない。だから不具合は、限られた時間で確実に直さなければならない。その鍵を握る知識が、探しにくい場所にあります。</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 01</div>
+        <h3>過去の記録が「探せない」</h3>
+        <p>何年分もの不具合記録や作業報告は残っているのに、検索しにくい。結局「あの人に聞く」が一番早い、という状態が続きます。</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 02</div>
+        <h3>分厚い英語マニュアル</h3>
+        <p>メーカーの整備マニュアルは英語で膨大。該当箇所を探して読み解くだけで、トラブル対応の時間が削られていきます。</p>
+      </div>
+      <div class="pain-card reveal">
+        <div class="pain-num">Pain 03</div>
+        <h3>ベテランの退職と経験の散逸</h3>
+        <p>「この音がしたら、あそこを見る」。記録に残らない勘所が、世代交代とともに失われていきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <div class="section-label reveal">What It Does</div>
+      <h2 class="section-title reveal">現場の知識を、<em>すぐ使える力</em>に。</h2>
+      <p class="pain-lead reveal" style="margin-bottom:0;">故障探求から、引き継ぎ、再発防止まで。<br>整備の一日の流れに沿って、AIが隣で支えます。</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-flag">まずはここから</div>
+        <div class="svc-icon">🔍</div>
+        <h3 class="svc-name">不具合記録ナレッジ検索<small>TROUBLESHOOTING SEARCH</small></h3>
+        <p class="svc-desc">過去の不具合記録・作業報告をAIが読み込み、症状を普通の言葉で入力するだけで、類似事例と当時の対処を提示。根拠となった記録は出典付きで確認でき、最終判断は整備士が行います。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>症状の言葉だけで過去事例を横断検索</li>
+          <li><span class="svc-check">✓</span>当時の原因・対処・作業者を参照できる</li>
+          <li><span class="svc-check">✓</span>回答には必ず出典を表示</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📘</div>
+        <h3 class="svc-name">整備マニュアル横断Q&amp;A<small>MANUAL ASSISTANT</small></h3>
+        <p class="svc-desc">英語の整備マニュアル・技術資料を読み込み、日本語で質問すると該当箇所を探して要約。原文ページも併せて示すので、翻訳の解釈違いを防ぎながら、確認の時間を大幅に短縮します。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>日本語で質問、英語マニュアルから回答</li>
+          <li><span class="svc-check">✓</span>原文の該当ページを併記</li>
+          <li><span class="svc-check">✓</span>ライセンス資料も外部に出さず活用</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📝</div>
+        <h3 class="svc-name">引き継ぎ・作業報告の下書き<small>HANDOVER DRAFTING</small></h3>
+        <p class="svc-desc">当直の作業メモや点検結果から、交代時の引き継ぎ書や作業報告の下書きを作成。書式を揃えることで、次の班への伝達漏れを減らし、記録そのものの質も高めます。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>メモから引き継ぎ書・報告書を下書き</li>
+          <li><span class="svc-check">✓</span>書式の統一で伝達漏れを防止</li>
+          <li><span class="svc-check">✓</span>書いた記録が、そのまま次の検索資産に</li>
+        </ul>
+      </div>
+
+      <div class="svc-card reveal">
+        <div class="svc-icon">📊</div>
+        <h3 class="svc-name">再発防止・傾向分析<small>RECURRENCE ANALYSIS</small></h3>
+        <p class="svc-desc">蓄積された不具合記録から、繰り返し発生している事象や部位の傾向を可視化。「なぜ繰り返すのか」を考える材料を揃え、再発防止の議論と報告書づくりを支援します。</p>
+        <ul class="svc-points">
+          <li><span class="svc-check">✓</span>繰り返す不具合を自動で抽出</li>
+          <li><span class="svc-check">✓</span>部位・時期ごとの傾向を可視化</li>
+          <li><span class="svc-check">✓</span>再発防止会議の資料づくりを支援</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY LOCAL -->
+<section class="whylocal">
+  <div class="whylocal-inner">
+    <div class="section-label reveal">Why Local AI</div>
+    <h2 class="section-title reveal">なぜ、<em>現場の中</em>で動くAIなのか。</h2>
+    <p class="wl-lead reveal">整備の技術情報は、メーカーとの契約で守られた資料や、安全に直結するノウハウの塊です。便利さのために、外部のクラウドへ送ることはできません。</p>
+    <div class="wl-grid">
+      <div class="wl-card reveal">
+        <div class="wl-icon">🔒</div>
+        <h3>外部送信ゼロ</h3>
+        <p>マニュアルも不具合記録も、組織のネットワークの外に一切出ません。ライセンス資料や機密の技術情報も安心して扱えます。</p>
+      </div>
+      <div class="wl-card reveal">
+        <div class="wl-icon">📌</div>
+        <h3>答えには、必ず根拠を</h3>
+        <p>AIの回答は、組織内の記録とマニュアルだけを根拠に組み立て、出典を表示します。判断するのは人、AIは探して揃える役です。</p>
+      </div>
+      <div class="wl-card reveal">
+        <div class="wl-icon">🛠️</div>
+        <h3>止まらない、振り回されない</h3>
+        <p>外部サービスの障害・値上げ・仕様変更に左右されません。夜間や休日の対応でも、いつも同じ性能で使えます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER NOTE -->
+<section class="pain">
+  <div class="pain-inner">
+    <div class="section-label reveal">From the Founder</div>
+    <h2 class="section-title reveal">整備の現場を、<em>知っている</em>から。</h2>
+    <div class="founder-note reveal">
+      <p>私はかつて、フルフライトシミュレーターの整備を3年間担当していました。訓練の予定は動かせない。不具合は、限られた時間で確実に直さなければならない。そのとき頼りになったのは、過去の記録と、先輩の経験でした。</p>
+      <p style="margin-top:12px;">その知識を、誰もがすぐに引き出せるようにしたい。そして、航空業界で体に叩き込まれた「再発防止」の考え方を、AIで支えたい。SecureMind for Infrastructure は、その思いから生まれました。</p>
+      <div class="fn-sign">SecureMind Technologies 代表　山田 慧史</div>
+    </div>
+    <div class="next-fields reveal">
+      <span class="nf-chip now">✈️ 航空機シミュレーター整備から</span>
+      <span class="nf-chip">🛩️ 航空整備</span>
+      <span class="nf-chip">🚆 鉄道車両・設備</span>
+      <span class="nf-chip">⚡ 電力・ガス・水道</span>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow">
+  <div class="flow-inner">
+    <div class="flow-header">
+      <div class="section-label reveal">Flow</div>
+      <h2 class="section-title reveal">小さく始めて、<em>現場で育てる</em></h2>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step reveal">
+        <div class="fs-num">1</div>
+        <h3>現場ヒアリング</h3>
+        <p>整備の流れ・記録の形式・困りごとを、現場で直接伺います</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">2</div>
+        <h3>小さく検証</h3>
+        <p>一部の記録・マニュアルで試作。現場の方に実際に使っていただきます</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">3</div>
+        <h3>現場内に構築</h3>
+        <p>専用機を設置し、組織のネットワーク内だけで動く環境を構築</p>
+      </div>
+      <div class="flow-step reveal">
+        <div class="fs-num">4</div>
+        <h3>運用・改善</h3>
+        <p>新しい記録を取り込み続け、使うほど現場に馴染むAIに</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2 class="reveal">まずは、<em>ひとつの現場</em>から。</h2>
+    <p class="reveal">いきなり全社導入ではなく、ひとつの設備・ひとつの班での試行から始められます。整備・保全部門のご担当者様、お気軽にご相談ください。費用は規模・ご要望に応じて個別にお見積もりいたします。</p>
+    <a class="btn-main reveal" href="/#contact">お問い合わせ・相談する →</a>
+    <div class="cta-note reveal">※ 本ページの画面イメージ・事例は説明用のサンプルです。</div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-line"><a href="/">SecureMind Technologies</a> — AIと話すだけでなく、一緒に働く。</div>
+  <div>© 2026 Secure Mind Technologies. All rights reserved.</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
