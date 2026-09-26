@@ -6,7 +6,7 @@
 <title>AI社員第1号を採用する | Secure Mind Technologies</title>
 
 <!-- SEO -->
-<meta name="description" content="口が固くて、頭がいい。機密情報を扱う組織のためのローカルAI導入支援「Secure Mind」。情報漏洩ゼロ・24時間365日稼働のAI社員を、インフラ企業・自治体に。">
+<meta name="description" content="AIと話すだけでなく、一緒に働く。機密情報を扱う組織のためのローカルAI導入支援「Secure Mind」。情報漏洩ゼロ・24時間365日稼働のAI社員を、インフラ企業・自治体に。">
 <meta name="keywords" content="ローカルAI,AI導入,DXコンサル,情報漏洩防止,機密情報,インフラAI,医療AI,法律AI,セキュアAI,オンプレミスAI">
 <meta name="author" content="Secure Mind Technologies">
 <meta name="robots" content="index, follow">
@@ -16,14 +16,14 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://securemind.co.jp/">
 <meta property="og:title" content="AI社員第1号を採用する | Secure Mind Technologies">
-<meta property="og:description" content="口が固くて、頭がいい。情報漏洩ゼロ・24時間365日稼働のAI社員を、あなたの組織に。ローカルAI×DXコンサルティング。">
+<meta property="og:description" content="AIと話すだけでなく、一緒に働く。情報漏洩ゼロ・24時間365日稼働のAI社員を、あなたの組織に。ローカルAI×DXコンサルティング。">
 <meta property="og:site_name" content="Secure Mind Technologies">
 <meta property="og:locale" content="ja_JP">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AI社員第1号を採用する | Secure Mind Technologies">
-<meta name="twitter:description" content="口が固くて、頭がいい。情報漏洩ゼロ・24時間365日稼働のAI社員を、あなたの組織に。">
+<meta name="twitter:description" content="AIと話すだけでなく、一緒に働く。情報漏洩ゼロ・24時間365日稼働のAI社員を、あなたの組織に。">
 
 <!-- 構造化データ（schema.org） -->
 <script type="application/ld+json">
@@ -624,6 +624,8 @@ nav {
   position:relative; z-index:2;
 }
 .t-detail-link:hover { color:#1F7A55; border-color:#1F7A55; }
+.t-detail-link-blue { color:#3B5FBF; border-color:rgba(59,95,191,.35); }
+.t-detail-link-blue:hover { color:#2A4596; border-color:#2A4596; }
 .edu .t-check { background:#2A9D6E; }
 .govt .t-check { background:var(--lavender); }
 .mfg .t-check { background:var(--pink); }
@@ -936,6 +938,42 @@ nav {
   .faq-q-icon { width:28px; height:28px; font-size:14px; }
   .faq-q-text { font-size:14px; }
   .faq-a { padding:0 18px 18px 58px; font-size:13px; }
+}
+
+/* NEWS */
+.news { background:linear-gradient(180deg, #FFF 0%, #FDFCFA 100%); padding:88px 48px; }
+.news-inner { max-width:800px; margin:0 auto; }
+.news-header { text-align:center; margin-bottom:40px; }
+.news-list { display:flex; flex-direction:column; }
+.news-item {
+  display:flex; align-items:center; gap:18px;
+  padding:20px 8px;
+  border-bottom:1px solid rgba(27,42,74,.08);
+  text-decoration:none;
+  transition:background .2s;
+}
+.news-item:first-of-type { border-top:1px solid rgba(27,42,74,.08); }
+.news-item:hover { background:rgba(255,107,157,.04); }
+.news-date {
+  font-family:'Space Mono', monospace;
+  font-size:12px; font-weight:700; color:var(--slate);
+  flex-shrink:0; letter-spacing:.03em;
+}
+.news-tag {
+  flex-shrink:0; font-size:10px; font-weight:800; letter-spacing:.08em;
+  padding:4px 12px; border-radius:100px;
+}
+.news-tag-info { background:rgba(27,42,74,.07); color:var(--navy); }
+.news-tag-release { background:rgba(42,157,110,.12); color:#1F7A55; }
+.news-tag-media { background:rgba(255,107,157,.12); color:var(--pink); }
+.news-title {
+  font-size:14px; font-weight:600; color:var(--navy); line-height:1.7;
+}
+.news-item:hover .news-title { color:var(--pink); }
+@media(max-width:640px){
+  .news { padding:60px 20px; }
+  .news-item { flex-wrap:wrap; gap:8px 12px; padding:16px 4px; }
+  .news-title { width:100%; font-size:13px; }
 }
 
 /* PRICING */
@@ -1406,7 +1444,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
     <li><a href="#secret">安全性</a></li>
     <li><a href="#whyus">選ばれる理由</a></li>
     <li><a href="#targets">対象</a></li>
-    <li><a href="#pricing">価格</a></li>
+    <li><a href="#news">お知らせ</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">相談する</a></li>
   </ul>
@@ -1542,7 +1580,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
         <span class="hero-h1-sub">——その悩み、SecureMindが解決します。</span>
       </h1>
       <div class="hero-catch">
-        <span class="underline">口が固くて、頭がいい。</span><br>
+        <span class="underline">AIと話すだけでなく、一緒に働く。</span><br>
         機密情報を扱うすべての組織へ、<br>情報漏洩ゼロのAI社員を。
       </div>
       <p class="hero-desc">
@@ -1552,7 +1590,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       </p>
       <div class="hero-monitor-badge">
         🎯 <strong>創業期モニター企業を3社限定募集中</strong><br>
-        <span>初期導入費50%OFF（200万円→100万円）・事例公開にご協力いただける企業様</span>
+        <span>導入費用を特別優遇・事例公開にご協力いただける組織様</span>
       </div>
       <div class="hero-btns">
         <a href="#contact" class="btn-main">30分の無料相談を予約する →</a>
@@ -1889,6 +1927,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
           <li><span class="t-check">✓</span>ベテランの暗黙知をAIに継承</li>
           <li><span class="t-check">✓</span>トラブル対応・保全業務の高速化</li>
         </ul>
+        <a href="/infrastructure/" class="t-detail-link t-detail-link-blue">サービス詳細を見る →</a>
         <div class="t-emoji">✈️</div>
       </div>
 
@@ -2019,143 +2058,32 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="pricing-inner">
-    <div class="pricing-header reveal">
-      <div class="section-label">Pricing</div>
-      <h2 class="section-title">価格の<em>目安</em></h2>
-      <p class="pricing-lead">正式な見積もりは、導入規模・要件に応じて個別にご提案いたします。<br>以下は標準的な構成での目安金額です。</p>
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="news-inner">
+    <div class="news-header reveal">
+      <div class="section-label">News</div>
+      <h2 class="section-title">お知らせ</h2>
     </div>
-
-    <!-- 2階層プラン -->
-    <div class="plans-grid reveal">
-      <div class="plan-card plan-basic">
-        <div class="plan-header">
-          <div class="plan-tier">BASIC</div>
-          <div class="plan-name">業務支援AI</div>
-        </div>
-        <p class="plan-desc">社内文書のRAG・要約・下書き・分類など、<strong>定型業務の効率化</strong>に特化したAI社員。</p>
-        <div class="plan-prices">
-          <div class="plan-price-row">
-            <span class="plan-price-label">初期導入費</span>
-            <span class="plan-price-num">200<small>万円〜</small></span>
-          </div>
-          <div class="plan-price-row">
-            <span class="plan-price-label">月額保守</span>
-            <span class="plan-price-num">20<small>万円〜</small></span>
-          </div>
-        </div>
-        <ul class="plan-features">
-          <li>✓ 社内文書ベースの質問応答</li>
-          <li>✓ 文書要約・分類・下書き作成</li>
-          <li>✓ 業務マニュアル化支援</li>
-        </ul>
-      </div>
-
-      <div class="plan-card plan-advanced">
-        <div class="plan-tier-badge">推奨</div>
-        <div class="plan-header">
-          <div class="plan-tier plan-tier-pink">ADVANCED</div>
-          <div class="plan-name">AIエージェント開発</div>
-        </div>
-        <p class="plan-desc">データ分析・意思決定支援・複数システム連携など、<strong>業務に特化したAIエージェント</strong>を設計・構築。</p>
-        <div class="plan-prices">
-          <div class="plan-price-row">
-            <span class="plan-price-label">初期導入費</span>
-            <span class="plan-price-num">500<small>万円〜</small></span>
-          </div>
-          <div class="plan-price-row">
-            <span class="plan-price-label">月額保守</span>
-            <span class="plan-price-num">40<small>万円〜</small></span>
-          </div>
-        </div>
-        <ul class="plan-features">
-          <li>✓ Basic の機能をすべて含む</li>
-          <li>✓ データ分析・レポート自動化</li>
-          <li>✓ 業務システムとの連携</li>
-          <li>✓ 意思決定支援エージェント</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="plans-note reveal">
-      ＋ <strong>ハードウェア費用 120万円〜</strong>（Mac Studio・NVIDIA DGX Spark などを組織規模・応答速度・用途に応じ選定）
-    </div>
-
-    <!-- 人間との比較 -->
-    <div class="pricing-compare reveal">
-      <div class="pc-header">
-        <div class="pc-eyebrow">📊 For Reference</div>
-        <h3 class="pc-title">人間の社員<em>1人</em>と比べると。</h3>
-      </div>
-      <div class="pc-grid">
-        <div class="pc-card pc-card-human">
-          <div class="pc-card-label">人間の社員 1人</div>
-          <div class="pc-card-items">
-            <div class="pc-item"><span>年収</span><strong>500万円</strong></div>
-            <div class="pc-item"><span>社会保険料・福利厚生 等</span><strong>250万円</strong></div>
-          </div>
-          <div class="pc-card-total">
-            <span>年間コスト</span>
-            <div class="pc-total-num">約 750<span>万円</span></div>
-          </div>
-        </div>
-
-        <div class="pc-vs">VS</div>
-
-        <div class="pc-card pc-card-ai">
-          <div class="pc-card-label">AI社員第1号 <span style="font-size:10px;font-weight:500;opacity:.7;">（Basicプラン）</span></div>
-          <div class="pc-card-items">
-            <div class="pc-item"><span>初期導入費（初年度のみ）</span><strong>200万円</strong></div>
-            <div class="pc-item"><span>デバイス費用（初年度のみ）</span><strong>120万円</strong></div>
-            <div class="pc-item"><span>月額保守 × 12ヶ月</span><strong>240万円</strong></div>
-          </div>
-          <div class="pc-card-totals">
-            <div class="pc-total-row">
-              <span class="pc-total-label">初年度</span>
-              <div class="pc-total-num pc-total-num-sub">約560<span>万円</span></div>
-            </div>
-            <div class="pc-total-row pc-total-row-highlight">
-              <span class="pc-total-label">2年目以降</span>
-              <div class="pc-total-num">約240<span>万円</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pc-savings">
-        <div class="pc-savings-item">
-          <div class="pc-savings-label">1年目の差額</div>
-          <div class="pc-savings-amount">約190<span>万円の節約</span></div>
-        </div>
-        <div class="pc-savings-divider"></div>
-        <div class="pc-savings-item">
-          <div class="pc-savings-label">2年目以降（毎年）</div>
-          <div class="pc-savings-amount">約510<span>万円の節約</span></div>
-        </div>
-      </div>
-
-      <div class="pc-savings-cumulative">
-        <div class="pc-cum-label">5年間の累計節約額</div>
-        <div class="pc-cum-amount">約<span class="pc-cum-big">2,230</span>万円</div>
-        <div class="pc-cum-formula">＝ 190万円 ＋ 510万円 × 4年</div>
-        <div class="pc-cum-disclaimer">※ 同一ハードウェアでの運用を前提とした試算です。AIモデルの進化に応じて、3〜4年で上位機種への更新を推奨する場合があります。</div>
-      </div>
-
-      <p class="pc-disclaimer">
-        しかも、<strong>24時間365日稼働・退職なし・口が固い</strong>。<br>
-        <span>※ 人件費を削るための導入ではありません。人間の仕事を「人間にしかできない仕事」に集中させるための仕組みです。</span>
-      </p>
-    </div>
-
-    <div class="pricing-note reveal">
-      💡 <strong>創業期モニター企業限定</strong>：Basicプランの初期導入費を <strong>50%OFF（200万円 → 100万円）</strong> でご提供します。<br>
-      <span>※ 3社限定・事例公開へのご協力と秘密保持契約の締結が条件です。公開範囲は個別に調整いたします。</span>
-    </div>
-    <div class="pricing-footnote reveal">
-      ※ ハードウェアの選定・購入手配は、弊社が責任を持って代行いたします。<br>
-      お客様名義で直接購入いただく形式のため、所有権・資産計上はお客様側に残ります。
+    <div class="news-list reveal">
+      <!--
+        ▼ 新しいお知らせの追加方法:
+        下の <a class="news-item"> ブロックをコピーして、リストの一番上に貼り付け、
+        日付・カテゴリ・タイトル・リンク先(href)を書き換えるだけ。
+        カテゴリのclassは news-tag-info(お知らせ/グレー), news-tag-release(リリース/緑),
+        news-tag-media(メディア/ピンク) の3種類。リンク不要なら href="#" のまま、
+        または <a> を <div> に変えてもOK。
+      -->
+      <a class="news-item" href="/government/">
+        <span class="news-date">2026.07.05</span>
+        <span class="news-tag news-tag-release">リリース</span>
+        <span class="news-title">自治体・議会向け「SecureMind for Government」のサービスページを公開しました</span>
+      </a>
+      <a class="news-item" href="#">
+        <span class="news-date">2026.07.04</span>
+        <span class="news-tag news-tag-info">お知らせ</span>
+        <span class="news-title">SecureMind Technologies 公式ウェブサイトを公開しました</span>
+      </a>
     </div>
   </div>
 </section>
@@ -2265,7 +2193,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
   <div class="cta-inner">
     <div class="cta-eyebrow reveal">Contact</div>
     <h2 class="cta-title reveal">まず、<em>30分だけ</em>話しませんか。</h2>
-    <p class="cta-desc reveal">「うちでも使えるの？」「どこから始めればいい？」<br>そんな一言からで大丈夫です。売り込みは一切いたしません。</p>
+    <p class="cta-desc reveal">「うちでも使えるの？」「どこから始めればいい？」<br>そんな一言からで大丈夫です。売り込みは一切いたしません。<br>費用は、導入規模・ご要望に応じて個別にお見積もりいたします。</p>
 
     <div class="cta-options reveal">
       <a href="#contact-form" class="cta-option cta-option-main">
@@ -2281,7 +2209,7 @@ footer p { font-size:12px; color:rgba(255,255,255,.3); }
       <a href="#contact-form" class="cta-option">
         <div class="cta-option-icon">🎯</div>
         <div class="cta-option-title">モニター応募</div>
-        <div class="cta-option-desc">3社限定・初期費50%OFF</div>
+        <div class="cta-option-desc">3社限定・特別条件</div>
       </a>
     </div>
 
