@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SecureMind for Government | 議会・自治体向けローカルAIサービス</title>
-<meta name="description" content="AI議事録サービス「ASSIST」・ライブ文字起こし・議事録検索「みんなの議事録」・広報動画サービス「広報アナウンサー」。住民情報や審議内容のAI処理をオフラインで行う、自治体専用のローカルAIサービスです。">
+<meta name="description" content="会議録ASSIST・議会字幕ASSIST・議事録検索「みんなの議事録」・広報動画サービス「広報アナウンサー」。住民情報や審議内容のAI処理をオフラインで行う、自治体専用のローカルAIサービスです。">
 <meta name="keywords" content="議事録AI,議会議事録,自動文字起こし,自治体AI,ローカルAI,議会DX,みんなの議事録">
 <meta property="og:title" content="SecureMind for Government | 議会・自治体向けローカルAI">
 <meta property="og:description" content="議事録作成の残業を、庁舎の中のAIがなくす。住民情報や審議内容のAI処理をオフラインで行う、自治体専用ローカルAIサービス。">
@@ -108,6 +108,18 @@ a{color:inherit;}
 .svc-points{list-style:none;display:flex;flex-direction:column;gap:8px;}
 .svc-points li{display:flex;gap:9px;align-items:flex-start;font-size:13px;font-weight:600;line-height:1.6;}
 .svc-check{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:var(--green);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:3px;}
+
+/* PUBLIC EXAMPLES */
+.svc-example{margin-top:22px;padding-top:20px;border-top:1px solid rgba(27,42,74,.1);}
+.svc-example h4{font-size:14px;font-weight:800;margin-bottom:10px;}
+.example-link{display:inline-block;font-size:13px;font-weight:700;color:var(--green-deep);text-underline-offset:3px;}
+.example-note{font-size:12px;color:var(--slate);line-height:1.85;margin-top:10px;}
+.video-frame{aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center;background:var(--green-soft);border:1px solid rgba(42,157,110,.2);border-radius:12px;overflow:hidden;}
+.video-load{font:inherit;font-size:14px;font-weight:700;color:var(--green-deep);background:#fff;border:1.5px solid var(--green-deep);border-radius:100px;padding:12px 18px;max-width:calc(100% - 24px);cursor:pointer;}
+.video-load[hidden]{display:none;}
+.video-load:focus-visible,.example-link:focus-visible{outline:3px solid var(--navy);outline-offset:4px;}
+.video-frame iframe{display:block;width:100%;height:100%;border:0;}
+.video-status{font-size:12px;color:var(--slate);margin-top:8px;}
 
 /* WHY LOCAL */
 .whylocal{padding:88px 24px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);color:#fff;}
@@ -230,13 +242,13 @@ footer a:hover{color:var(--pink);}
       </div>
       <div class="pain-card reveal">
         <div class="pain-num">Pain 02</div>
-        <h3>外部委託は高く、遅い</h3>
-        <p>反訳業者への委託は1時間あたり数万円。納品まで数週間かかり、公開の遅れが住民への説明責任にも影響します。</p>
+        <h3>会議録づくりの負担を軽く</h3>
+        <p>文字起こしから内容の確認・修正まで、会議録の作成にはさまざまな工程があります。会議録ASSISTは文字起こしと下書き作成を支援し、職員が内容の確認や仕上げに取り組みやすい環境を目指します。</p>
       </div>
       <div class="pain-card reveal">
         <div class="pain-num">Pain 03</div>
-        <h3>クラウド文字起こしは使えない</h3>
-        <p>便利なAI文字起こしサービスは、音声を外部サーバーに送信します。非公開の委員会・協議会では、そもそも選択肢になりません。</p>
+        <h3>会議の内容に合った文字起こし環境を</h3>
+        <p>文字起こしの方法は、外部委託や庁内で認められたツールなど、自治体ごとに異なります。非公開の会議では、音声の送信先や保存先、庁内の運用ルールを確認することが大切です。会議録ASSISTは、音声を外部クラウドへ送らず、庁内で処理したい場合の選択肢を提供します。</p>
       </div>
     </div>
   </div>
@@ -254,7 +266,7 @@ footer a:hover{color:var(--pink);}
       <div class="svc-card reveal">
         <div class="svc-flag">主力サービス</div>
         <div class="svc-icon">📝</div>
-        <h3 class="svc-name">AI議事録サービス「ASSIST」<small>AI MINUTES — ASSIST</small></h3>
+        <h3 class="svc-name">会議録ASSIST<small>AI MINUTES — ASSIST</small></h3>
         <p class="svc-desc">本会議・委員会の録音データから、文字起こし・話者整理・要約・整形まで自動化。完成した議事録案を職員が確認・修正するだけの運用に変わります。AIの処理は庁舎内の専用機で行い、音声・テキストを外部クラウドへ送らないオフライン構成をご提案します。</p>
         <ul class="svc-points">
           <li><span class="svc-check">✓</span>書き起こし作業時間を大幅に削減</li>
@@ -265,8 +277,8 @@ footer a:hover{color:var(--pink);}
 
       <div class="svc-card reveal">
         <div class="svc-icon">🎤</div>
-        <h3 class="svc-name">議会ライブ文字起こし<small>LIVE TRANSCRIPTION</small></h3>
-        <p class="svc-desc">開会中の議会を、リアルタイムで文字化。議場のモニターや中継画面に字幕として表示でき、聴覚に障害のある方や高齢の傍聴者への情報保障にもつながります。開かれた議会づくりの、新しい標準に。</p>
+        <h3 class="svc-name">議会字幕ASSIST<small>LIVE TRANSCRIPTION</small></h3>
+        <p class="svc-desc">議場のモニターや議会中継に、発言をリアルタイムで字幕表示。聴覚に障害のある方や高齢の傍聴者への情報保障にもつながります。開かれた議会づくりの、新しい標準に。</p>
         <ul class="svc-points">
           <li><span class="svc-check">✓</span>議場・中継への字幕表示に対応</li>
           <li><span class="svc-check">✓</span>聞こえに不安のある住民への情報保障</li>
@@ -276,7 +288,7 @@ footer a:hover{color:var(--pink);}
 
       <div class="svc-card reveal">
         <div class="svc-icon">📚</div>
-        <h3 class="svc-name">答弁書作成支援<small>ANSWER DRAFTING</small></h3>
+        <h3 class="svc-name">答弁書ASSIST<small>ANSWER DRAFTING</small></h3>
         <p class="svc-desc">過去の議事録・条例・行政計画を読み込んだAIが、一般質問への答弁書の下書きを作成。庁内の文書だけを根拠に回答を組み立てるため、過去の答弁との食い違いを防げます。根拠となった箇所は出典付きで表示。</p>
         <ul class="svc-points">
           <li><span class="svc-check">✓</span>過去の議事録・条例を根拠に下書きを作成</li>
@@ -287,7 +299,7 @@ footer a:hover{color:var(--pink);}
 
       <div class="svc-card reveal">
         <div class="svc-icon">📰</div>
-        <h3 class="svc-name">議会だより作成支援<small>ASSEMBLY NEWSLETTER</small></h3>
+        <h3 class="svc-name">議会だよりASSIST<small>ASSEMBLY NEWSLETTER</small></h3>
         <p class="svc-desc">完成した議事録から、議会だよりの原稿案を自動生成。一般質問の要旨、審議結果の一覧、住民に伝わる平易な要約まで。編集委員と事務局の負担を減らし、発行までの期間を短縮します。</p>
         <ul class="svc-points">
           <li><span class="svc-check">✓</span>議事録から要旨・原稿案を自動生成</li>
@@ -305,6 +317,11 @@ footer a:hover{color:var(--pink);}
           <li><span class="svc-check">✓</span>オープンデータとしての活用にも対応</li>
           <li><span class="svc-check">✓</span>住民への説明責任と議会広報を強化</li>
         </ul>
+        <div class="svc-example">
+          <h4>実際のサイトを見る</h4>
+          <a class="example-link" href="https://datamonsters-jp.github.io/minna-no-gijiroku/index.html">みんなの議事録 周防大島町を開く →</a>
+          <p class="example-note">公開会議録をAIで要約した非公式サイトです。自治体の公式サイトではありません。正確な内容はリンク先で案内する原文の会議録をご確認ください。</p>
+        </div>
       </div>
 
       <div class="svc-card reveal">
@@ -316,6 +333,17 @@ footer a:hover{color:var(--pink);}
           <li><span class="svc-check">✓</span>制作をAI支援し、低コストで継続可能に</li>
           <li><span class="svc-check">✓</span>SNS・YouTube等での住民向け発信に対応</li>
         </ul>
+        <div class="svc-example">
+          <h4>広報動画の制作例</h4>
+          <p class="example-note" id="koho-video-description">「周防大島ニュース：チャレンジショップ出店者募集」（約52秒）。動画表現の制作例です。現在の募集状況を案内するものではありません。</p>
+          <p class="example-note" id="koho-video-disclosure">この動画は外部サービスHeyGenを使って制作・配信しています。庁内で行うオフラインAI処理とは別のサービスです。「動画を読み込む」を押すとHeyGenへ接続します。</p>
+          <div class="video-frame" id="koho-video-player">
+            <button class="video-load" id="koho-video-load" type="button" aria-describedby="koho-video-description koho-video-disclosure" hidden>▶ 動画を読み込む</button>
+            <noscript><p class="example-note">動画は下のリンクからご覧ください。</p></noscript>
+          </div>
+          <p class="video-status" id="koho-video-status" role="status" aria-live="polite"></p>
+          <a class="example-link" href="https://app.heygen.com/embeds/c6bb820a9b054a60a285df5a45b16d79">HeyGenで動画を直接開く（外部サイト） →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -326,7 +354,7 @@ footer a:hover{color:var(--pink);}
   <div class="whylocal-inner">
     <div class="section-label reveal">Why Local AI</div>
     <h2 class="section-title reveal">なぜ、<em>庁舎の中</em>で動くAIなのか。</h2>
-    <p class="wl-lead reveal">自治体が扱うのは、住民の人生に関わる情報です。便利さのために、それを外部サーバーに送ることはできません。SecureMindのAIは、庁舎に設置した専用機の中だけで動きます。</p>
+    <p class="wl-lead reveal">自治体が扱うのは、住民の人生に関わる情報です。SecureMindのAIは、庁舎に設置した専用機の中だけで動きます。</p>
     <div class="wl-grid">
       <div class="wl-card reveal">
         <div class="wl-icon">🔒</div>
@@ -395,6 +423,24 @@ footer a:hover{color:var(--pink);}
 </footer>
 
 <script>
+const videoLoad=document.getElementById('koho-video-load');
+const videoPlayer=document.getElementById('koho-video-player');
+const videoStatus=document.getElementById('koho-video-status');
+if(videoLoad && videoPlayer && videoStatus){
+  videoLoad.addEventListener('click',()=>{
+    if(videoPlayer.querySelector('iframe')) return;
+    const frame=document.createElement('iframe');
+    frame.src='https://app.heygen.com/embeds/c6bb820a9b054a60a285df5a45b16d79';
+    frame.title='広報動画の制作例：周防大島ニュース・チャレンジショップ出店者募集';
+    frame.allow='fullscreen';
+    frame.referrerPolicy='no-referrer';
+    frame.tabIndex=0;
+    videoPlayer.replaceChildren(frame);
+    videoStatus.textContent='HeyGenのプレイヤーを表示しました。再生ボタンを押してご覧ください。表示されない場合は下のリンクから直接開けます。';
+    frame.focus();
+  });
+  videoLoad.hidden=false;
+}
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
